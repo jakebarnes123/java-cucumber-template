@@ -12,6 +12,7 @@ public class Hooks {
     @Before
     public void openBrowser() {
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
     }
 
     @After
