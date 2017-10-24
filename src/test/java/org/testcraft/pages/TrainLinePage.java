@@ -14,7 +14,7 @@ public class TrainLinePage extends AbstractPage {
 
     private static final By ORIGIN = By.id("originStation");
     private static final By DESTINATION = By.id("destinationStation");
-    private static final String URL = "http://www.thetrainline.com";
+    private static final String URL = "https://www.thetrainline.com/";
 
 
     // Methods using webdriver
@@ -36,9 +36,17 @@ public class TrainLinePage extends AbstractPage {
         enterDestination(finish);
     }
 
+    //This test can be used to check that typing http redirects to https, as well as be used to check the url
     public void checkTestOne() {
         String tmpUrl = driver.getCurrentUrl();
         Assert.assertEquals(URL, tmpUrl);
+        System.out.println(tmpUrl);
+    }
+    // This test is used to check the title of the page, using an assertion
+    public void checkTitle() {
+        String tmpTitle = driver.getTitle();
+        Assert.assertTrue(tmpTitle.contains("Trainline"));
     }
 
+    ////////////Make tests using generics? do later
 }
