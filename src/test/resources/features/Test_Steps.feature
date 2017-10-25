@@ -30,7 +30,7 @@ Feature: Trainline retrieve times and prices
   | "Brighton"      | "London"        |
 
     ## Exercise 5, using the calender widget
-  @wip
+#  @wip
   Scenario Outline: Exercise 5
     Given I enter journey details <journeyDetails1>, <journeyDetails2>
     And I click the return radio button
@@ -42,31 +42,44 @@ Feature: Trainline retrieve times and prices
   | journeyDetails1 | journeyDetails2 |
   | "Brighton"      | "London"        |
 
+
+
     ###Extension
-  Scenario: Plan Journey - list times and prices for a single journey for 2 adults and 2 children
+
+  Scenario Outline: Plan Journey - list times and prices for a single journey for 2 adults and 2 children
     Given I enter journey details <journeyDetails1>, <journeyDetails2>
+    And I select the passenger summary dropdown
     And I select 2 adults
     And I select 2 children
     When I click get times & tickets
     Then times and prices are displayed
 
-  Scenario: Plan journey - list times and prices for a return trip on the same day
+  Examples:
+  | journeyDetails1 | journeyDetails2 |
+  | "Brighton"      | "London"        |
+
+#  @wip
+  Scenario Outline: Plan journey - list times and prices for a return trip on the same day
     Given I enter journey details <journeyDetails1>, <journeyDetails2>
-    And I select the return radio button
+    And I click the return radio button
     And I select a return date for the same day
     When I click get times & tickets
     Then times and prices are displayed
 
+    Examples:
+      | journeyDetails1 | journeyDetails2 |
+      | "Brighton"      | "London"        |
+
   Scenario: Plan journey - find the cheapest route for a single journey from Aberdeen to York
 #    TODO: Using the best fare finder, print out the times and price for the cheapest return from Aberdeen to York
 #    TODO: Going out on the 11th Nov +/- 3 days, returning 25th Nov +/- days
-    Given I enter journey details <journeyDetails1>, <journeyDetails2>
+#    Given I enter journey details <journeyDetails1>, <journeyDetails2>
     ## look up how bestfarefinder actually works
 
 
   Scenario: Plan journey - user attempts to plan for a date in the past
     #TODO: User attempts to plan a journey which occurs in the past - error message should be displayed
-    Given I enter journey details <journeyDetails1>, <journeyDetails2>
+#    Given I enter journey details <journeyDetails1>, <journeyDetails2>
     And I select a date in the past
     When I click get times & tickets
     Then An error message is displayed
